@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/serial.h
+
+/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/src/serial.cpp
+serial.h
+/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/src/serial.h
+fstream
+-
+iostream
+-
+thread
+-
+vector
+-
+string
+-
+map
+-
+

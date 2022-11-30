@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++ -Wall -O2 -Wextra -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/serial.dir/src/serial.cpp.o -o serial  /usr/local/lib/libomp.dylib 
+/usr/bin/c++  -Wall -O2 -Wextra  -rdynamic CMakeFiles/serial.dir/src/serial.cpp.o  -o serial  -lgomp -lpthread 

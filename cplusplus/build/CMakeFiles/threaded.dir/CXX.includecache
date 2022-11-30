@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/threaded.h
+
+/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/src/threaded.cpp
+threaded.h
+/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/src/threaded.h
+iostream
+-
+thread
+-
+vector
+-
+

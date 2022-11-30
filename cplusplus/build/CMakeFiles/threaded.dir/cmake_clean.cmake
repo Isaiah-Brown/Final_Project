@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/threaded.dir/src/threaded.cpp.o"
-  "CMakeFiles/threaded.dir/src/threaded.cpp.o.d"
   "threaded"
   "threaded.pdb"
 )
