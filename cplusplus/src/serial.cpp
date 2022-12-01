@@ -3,22 +3,19 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <unordered_map>
+
+using namespace std;
 
 
 void hello() {
-  std::cout << "Hello from thread " << std::this_thread::get_id() << std::endl;
+  cout << "Hello from thread " << this_thread::get_id() << endl;
 }
 
 int main() {
-  std::vector<std::thread> threads;
-  for (int i = 0; i < 10; i++) {
-    std::thread t(hello);
-    threads.push_back(std::move(t));
-  }
+  unordered_map<string, vector<int>>table;
 
-  for (auto &t : threads) {
-    t.join();
-  }
+  unordered_map<string, string>New_map;
 
   return 0;
 }
