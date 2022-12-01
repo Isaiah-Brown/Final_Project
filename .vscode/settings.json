@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "unordered_map": "cpp",
+        "__locale": "cpp",
+        "vector": "cpp",
+        "string": "cpp",
+        "iosfwd": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp",
+        "__mutex_base": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "optional": "cpp",
+        "stack": "cpp",
+        "thread": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp"
+    }
+}
