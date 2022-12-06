@@ -53,7 +53,9 @@ unordered_map<char, vector<int>> GenMatrix() {
 }
 
 string GenCol(){
+
     string col = "ARNDCQEGHILKMFPSTWYVBJZX"; 
+    
     return col;
 }
 
