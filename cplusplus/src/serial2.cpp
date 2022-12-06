@@ -868,7 +868,7 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
 
     int gap = table.at('_').at('_');
 
-    cout << bestI << " " << bestJ << endl;
+    //cout << bestI << " " << bestJ << endl;
 
 
     while(board[i][j] != 0){

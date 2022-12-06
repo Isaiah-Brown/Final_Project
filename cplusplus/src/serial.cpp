@@ -6,7 +6,7 @@
 #include <string>
 #include <unordered_map>
 
-
+using namespace std::chrono;
 using namespace std;
 
 string seq1;
@@ -214,6 +214,8 @@ void traceBack(vector<vector<int>> board, unordered_map<char, vector<int>> table
 
 
 int main() {
+  auto start = high_resolution_clock::now();
+  
   seq1 = loadfile("../input/proteinseq1.txt");
   seq2 = loadfile("../input/proteinseq2.txt");
   unordered_map<char, vector<int>>table = GenMatrix();
@@ -222,6 +224,9 @@ int main() {
   traceBack(board, table, col);
   cout << finalSeq1 << endl;
   cout << finalSeq2 << endl;
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<milliseconds>(stop - start);
+  cout <<"serial time taken" << duration.count() << endl;
 
  
 }
