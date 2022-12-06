@@ -79,8 +79,6 @@ serial_EXTERNAL_OBJECTS =
 
 serial: CMakeFiles/serial.dir/src/serial.cpp.o
 serial: CMakeFiles/serial.dir/build.make
-serial: /usr/lib/gcc/x86_64-linux-gnu/9/libgomp.so
-serial: /usr/lib/x86_64-linux-gnu/libpthread.so
 serial: CMakeFiles/serial.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable serial"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/serial.dir/link.txt --verbose=$(VERBOSE)

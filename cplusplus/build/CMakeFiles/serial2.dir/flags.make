@@ -6,5 +6,5 @@ CXX_FLAGS = -Wall -O2 -Wextra -pthread   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/include 
+CXX_INCLUDES = 
 
