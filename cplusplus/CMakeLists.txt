@@ -21,6 +21,12 @@ add_executable(serial src/serial.cpp)
 target_include_directories(serial PRIVATE include)
 target_link_libraries(serial PRIVATE OpenMP::OpenMP_CXX)
 
+add_executable(serial2 src/serial2.cpp)
+target_include_directories(serial PRIVATE include)
+target_link_libraries(serial PRIVATE OpenMP::OpenMP_CXX)
+
+
+
 
 add_executable(threaded src/threaded.cpp)
 target_include_directories(threaded PRIVATE include)
