@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <time.h>
 #include <stack>
+#include <mutex>
 
 using namespace std;
 using namespace std::chrono;
@@ -771,17 +772,17 @@ string loadfile(string filepath){
     seq.pop_back();
   }
   seq += last_char;
-  //cout << seq << endl; 
   return seq;
 }
 
 
 
 
-void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads, stack<vector<int>> &stack){
+void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads, std::stack<vector<int>> &stack){
 
   //cout << "here" << endl;
   int verybestscore = 0;
+ 
   int gap = table.at('_').at('_');
 
   int i = id;
@@ -791,15 +792,18 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
 
   int bestI = i;
   int bestJ = j;
+  //cout << id << " here " <<  endl;
+  //cout << rows << " " << cols << endl;
   while(i < rows - 1) {
     while(j < cols - 1) {
         if (board[i][j+1] != -1 and board[i+1][j] != -1 and board[i][j] != -1) {
 
-        //cout << i << " " << j << endl;
+        
         int diagonal = board[i][j];
         int top = board[i][j+1];
         int left = board[i+1][j];
         //cout << "here" << endl;
+        
 
         char seq1C = seq1[j];
         char seq2C = seq2[i];
@@ -917,7 +921,6 @@ int main() {
     for(int j = 0; j < boardColumns; j++){
         s += to_string(board[i][j]);
     }
-    cout << s << endl;
     s = "";
   }
   
@@ -926,7 +929,7 @@ int main() {
   std::vector<std::thread> threads;
   mutex m;
   int numThreads = 10;
-  stack<vector<int>> stack;
+  std::stack<vector<int>> stack;
   for (int i = 0; i < numThreads; i++) {
     int id = i;
     std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads, ref(stack));
@@ -951,13 +954,15 @@ int main() {
     }
   }
   
-  cout << "here" << endl;
+ 
   traceBack(board, table, i, j);
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<milliseconds>(stop - start);
+  cout << "time taken (milliseconds): " << duration.count()<< endl;
+  
   cout << finalSeq1 << endl;
   cout << finalSeq2 << endl;
-  cout << "time taken (milliseconds): " << duration.count()<< endl;
+  
   
 
   return 0;
