@@ -820,8 +820,8 @@ vector<vector<int>> buildMatrix(string seq1, string seq2, unordered_map<char, un
   int veryBestScore = 0;
   int gap = table.at('_').at('_');
 
-  cout << seq1.length() << endl;
-  cout << seq2.length() << endl;
+  //cout << seq1.length() << endl;
+  //cout << seq2.length() << endl;
   
   for (int i = 0; i < seq2.length(); i++){
     for (int j=0; j < seq1.length(); j++){
