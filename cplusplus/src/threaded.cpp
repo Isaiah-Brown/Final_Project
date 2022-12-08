@@ -10,6 +10,7 @@
 #include <string>
 #include <unordered_map>
 #include <time.h>
+#include <stack>
 
 using namespace std;
 using namespace std::chrono;
@@ -18,8 +19,6 @@ string seq1;
 string seq2;
 string finalSeq1 = "";
 string finalSeq2 = "";
-int bestI = 0;
-int bestJ = 0;
 
 
 unordered_map<char, unordered_map<char, int>> GenMatrix() {
@@ -779,17 +778,19 @@ string loadfile(string filepath){
 
 
 
-void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads){
+void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads, stack<vector<int>> &stack){
 
   //cout << "here" << endl;
+  int verybestscore = 0;
   int gap = table.at('_').at('_');
 
   int i = id;
   int j = 0;
   int rows = board.size();
   int cols = board[0].size();
-  cout << id << " here " <<  endl;
-  cout << rows << " " << cols << endl;
+
+  int bestI = i;
+  int bestJ = j;
   while(i < rows - 1) {
     while(j < cols - 1) {
         if (board[i][j+1] != -1 and board[i+1][j] != -1 and board[i][j] != -1) {
@@ -798,7 +799,7 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
         int diagonal = board[i][j];
         int top = board[i][j+1];
         int left = board[i+1][j];
-        cout << "here" << endl;
+        //cout << "here" << endl;
 
         char seq1C = seq1[j];
         char seq2C = seq2[i];
@@ -810,15 +811,20 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
 
 
         int bestScore = getMax(diagonalScore, topScore, leftScore);
-
+        
         if (bestScore < 0) {
-            m.unlock();
+            m.lock();
             board[i+1][j+1] = 0;
-            m.lock();
-        } else {
             m.unlock();
-            board[i+1][j+1] = bestScore;
+        } else {
             m.lock();
+            board[i+1][j+1] = bestScore;
+            m.unlock();
+            if(bestScore > verybestscore) {
+                verybestscore = bestScore;
+                bestI = i + 1;
+                bestJ = j + 1;
+            }
         }
         j += 1;
         }
@@ -826,17 +832,16 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
     j = 0;
     i += numThreads;
   }
-  cout << "here" << endl;
+  stack.push({bestI, bestJ});
 }
 
 
        
-void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char, int>> table){
+void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char, int>> table, int i, int j){
 
    
     //int identities = 0
-    int i = bestI;
-    int j = bestJ;
+   
 
     int gap = table.at('_').at('_');
 
@@ -921,27 +926,33 @@ int main() {
   std::vector<std::thread> threads;
   mutex m;
   int numThreads = 10;
+  stack<vector<int>> stack;
   for (int i = 0; i < numThreads; i++) {
     int id = i;
-    std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads);
+    std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads, ref(stack));
     threads.push_back(std::move(t));
   }
 
   for (auto &t : threads) {
     t.join();
   }
+
   int max = 0;
-  for(int i = 0; i < boardRows; i++){
-    for(int j = 0; j < boardColumns; j++){
-        if (board[i][j] > max) {
-            max = board[i][j];
-            bestI = i;
-            bestJ = j;
-        }
+  int i = 0;
+  int j = 0;
+  while(!stack.empty()) {
+    vector<int> v = stack.top();
+    stack.pop();
+    int curr = board[v[0]][v[1]];
+    if (curr > max) {
+        max = curr;
+        i = v[0];
+        j = v[1];
     }
   }
+  
   cout << "here" << endl;
-  traceBack(board, table);
+  traceBack(board, table, i, j);
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<milliseconds>(stop - start);
   cout << finalSeq1 << endl;
