@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/src/serial2.cpp
+fstream
+-
+iostream
+-
+thread
+-
+vector
+-
+string
+-
+unordered_map
+-
+time.h
+-
+

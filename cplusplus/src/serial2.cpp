@@ -8,6 +8,7 @@
 #include <time.h>
 
 using namespace std;
+using namespace std::chrono;
 
 string seq1;
 string seq2;
@@ -917,17 +918,22 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
 
 
 int main() {
-  seq1 = loadfile("../input/proteinseq1.txt");
-  seq2 = loadfile("../input/proteinseq2.txt");
-  unordered_map<char, unordered_map<char, int>>table = GenMatrix();
+    auto start = high_resolution_clock::now();
+    seq1 = loadfile("../input/proteinseq1.txt");
+    seq2 = loadfile("../input/proteinseq2.txt");
+    unordered_map<char, unordered_map<char, int>>table = GenMatrix();
+
+    
+    vector<vector<int>> board = buildMatrix(seq1, seq2, table);
+    traceBack(board, table);
+    
+    
+    cout << finalSeq1 << endl;
+    cout << finalSeq2 << endl;
   
-  time_t start = time(0);
-  vector<vector<int>> board = buildMatrix(seq1, seq2, table);
-  traceBack(board, table);
-  time_t end = time(0);
-  int total = start - end;
-  cout << finalSeq1 << endl;
-  cout << finalSeq2 << endl;
-  cout << total << endl;
-  cout << end << endl;
+    
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    cout << "time taken (milliseconds) for serial2: " << duration.count() << endl;
+
 }

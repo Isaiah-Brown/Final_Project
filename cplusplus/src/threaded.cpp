@@ -10,6 +10,7 @@
 #include <string>
 #include <unordered_map>
 #include <time.h>
+#include <mutex>
 
 using namespace std;
 using namespace std::chrono;
@@ -772,7 +773,6 @@ string loadfile(string filepath){
     seq.pop_back();
   }
   seq += last_char;
-  //cout << seq << endl; 
   return seq;
 }
 
@@ -781,24 +781,24 @@ string loadfile(string filepath){
 
 void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads){
 
-  //cout << "here" << endl;
+ 
   int gap = table.at('_').at('_');
 
   int i = id;
   int j = 0;
   int rows = board.size();
   int cols = board[0].size();
-  cout << id << " here " <<  endl;
-  cout << rows << " " << cols << endl;
+  //cout << id << " here " <<  endl;
+  //cout << rows << " " << cols << endl;
   while(i < rows - 1) {
     while(j < cols - 1) {
         if (board[i][j+1] != -1 and board[i+1][j] != -1 and board[i][j] != -1) {
 
-        //cout << i << " " << j << endl;
+        
         int diagonal = board[i][j];
         int top = board[i][j+1];
         int left = board[i+1][j];
-        cout << "here" << endl;
+        
 
         char seq1C = seq1[j];
         char seq2C = seq2[i];
@@ -812,13 +812,13 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
         int bestScore = getMax(diagonalScore, topScore, leftScore);
 
         if (bestScore < 0) {
-            m.unlock();
+            m.lock();
             board[i+1][j+1] = 0;
-            m.lock();
-        } else {
             m.unlock();
-            board[i+1][j+1] = bestScore;
+        } else {
             m.lock();
+            board[i+1][j+1] = bestScore;
+            m.unlock();
         }
         j += 1;
         }
@@ -826,7 +826,6 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
     j = 0;
     i += numThreads;
   }
-  cout << "here" << endl;
 }
 
 
@@ -912,7 +911,6 @@ int main() {
     for(int j = 0; j < boardColumns; j++){
         s += to_string(board[i][j]);
     }
-    cout << s << endl;
     s = "";
   }
   
@@ -940,13 +938,15 @@ int main() {
         }
     }
   }
-  cout << "here" << endl;
+
   traceBack(board, table);
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<milliseconds>(stop - start);
+  cout << "time taken (milliseconds): " << duration.count()<< endl;
+  
   cout << finalSeq1 << endl;
   cout << finalSeq2 << endl;
-  cout << "time taken (milliseconds): " << duration.count()<< endl;
+  
   
 
   return 0;

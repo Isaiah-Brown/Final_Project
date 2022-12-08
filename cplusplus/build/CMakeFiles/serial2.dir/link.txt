@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -O2 -Wextra -pthread  -rdynamic CMakeFiles/serial2.dir/src/serial2.cpp.o  -o serial2 
