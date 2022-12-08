@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -O2 -Wextra -pthread  -rdynamic CMakeFiles/serial.dir/src/serial.cpp.o  -o serial  -pthread 

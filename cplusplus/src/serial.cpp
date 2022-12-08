@@ -226,7 +226,7 @@ int main() {
   cout << finalSeq2 << endl;
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<milliseconds>(stop - start);
-  cout <<"serial time taken" << duration.count() << endl;
+  cout <<"serial time taken " << duration.count() << endl;
 
  
 }

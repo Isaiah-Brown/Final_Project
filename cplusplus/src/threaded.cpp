@@ -23,39 +23,10 @@ int bestJ = 0;
 
 
 unordered_map<char, unordered_map<char, int>> GenMatrix() {
-   unordered_map<char, vector<int>>table;
+   
+    unordered_map<char, unordered_map<char, int>>table;
 
-  
-   table = {
-    {'A' , {5, -2, -1, -2, -1, -1, -1,  0, -2, -1, -1, -1, -1, -2, -1,  1,  0, -2, -2,  0, -1, -1, -1, -1}},
-    {'R' , {-2,  7,  0, -1, -3,  1,  0, -2,  0, -3, -2,  3, -1, -2, -2, -1, -1, -2, -1, -2, -1, -3,  1, -1}},
-    {'N' , {-1,  0,  6,  2, -2,  0,  0,  0,  1, -2, -3,  0, -2, -2, -2,  1,  0, -4, -2, -3,  5, -3,  0, -1}},
-    {'D' , {-2, -1,  2,  7, -3,  0,  2, -1,  0, -4, -3,  0, -3, -4, -1,  0, -1, -4, -2, -3,  6, -3,  1, -1}},
-    {'C' , {-1, -3, -2, -3, 12, -3, -3, -3, -3, -3, -2, -3, -2, -2, -4, -1, -1, -5, -3, -1, -2, -2, -3, -1}},
-    {'Q' , {-1,  1,  0,  0, -3,  6,  2, -2,  1, -2, -2, 1,  0, -4, -1,  0, -1, -2, -1, -3,  0, -2,  4, -1}},
-    {'E' , {-1,  0,  0,  2, -3,  2,  6, -2,  0, -3, -2,  1, -2, -3,  0,  0, -1, -3, -2, -3,  1, -3,  5, -1}},
-    {'G' , {0, -2,  0, -1, -3, -2, -2,  7, -2, -4, -3, -2, -2, -3, -2,  0, -2, -2, -3, -3, -1, -4, -2, -1}},
-    {'H' , {-2,  0, 1,  0, -3,  1,  0, -2, 10, -3, -2, -1,  0, -2, -2, -1, -2, -3,  2, -3,  0, -2,  0, -1}},
-    {'I' , {-1, -3, -2, -4, -3, -2, -3, -4, -3,  5,  2, -3, 2,  0, -2, -2, -1, -2,  0,  3, -3,  4, -3, -1}},
-    {'L' , {-1, -2, -3, -3, -2, -2, -2, -3, -2,  2,  5, -3,  2,  1, -3, -3, -1, -2,  0,  1, -3,  4, -2, -1}},
-    {'K' , {-1,  3,  0,  0, -3,  1,  1, -2, -1, -3, -3,  5, -1, -3, -1, -1, -1, -2, -1, -2,  0, -3,  1, -1}},
-    {'M' , {-1, -1, -2, -3, -2,  0, -2, -2,  0,  2,  2, -1,  6,  0, -2, -2, -1, -2,  0,  1, -2,  2, -1, -1}},
-    {'F' , {-2, -2, -2, -4, -2, -4, -3, -3, -2,  0,  1, -3,  0,  8, -3, -2, -1,  1,  3,  0, -3,  1, -3, -1}},
-    {'P' , {-1, -2, -2, -1, -4, -1,  0, -2, -2, -2, -3, -1, -2, -3,  9, -1, -1, -3, -3, -3, -2, -3, -1, -1}},
-    {'S' , {1, -1,  1,  0, -1,  0,  0,  0, -1, -2, -3, -1, -2, -2, -1,  4,  2, -4, -2, -1,  0, -2,  0, -1}},
-    {'T' , {0, -1,  0, -1, -1, -1, -1, -2, -2, -1, -1, -1, -1, -1, -1,  2,  5, -3, -1,  0,  0, -1, -1, -1}},
-    {'W' , {-2, -2, -4, -4, -5, -2, -3, -2, -3, -2, -2, -2, -2,  1, -3, -4, -3, 15,  3, -3, -4, -2, -2, -1}},
-    {'Y' , {-2, -1, -2, -2, -3, -1, -2, -3,  2,  0,  0, -1,  0,  3, -3, -2, -1,  3,  8, -1, -2, 0, -2, -1}},
-    {'V' , {0, -2, -3, -3, -1, -3, -3, -3, -3,  3, 1, -2,  1,  0, -3, -1,  0, -3, -1,  5, -3,  2, -3, -1}},
-    {'B' , {-1, -1,  5,  6, -2,  0,  1, -1,  0, -3, -3,  0, -2, -3, -2,  0,  0, -4, -2, -3,  5, -3,  1, -1}},
-    {'J' , {-1, -3, -3, -3, -2, -2, -3, -4, -2,  4,  4, -3,  2,  1, -3, -2, -1, -2,  0,  2, -3,  4, -2, -1}},
-    {'Z' , {-1,  1,  0,  1, -3, 4,  5, -2,  0, -3, -2,  1, -1, -3, -1,  0, -1, -2, -2, -3,  1, -2,  5, -1}},
-    {'X' , {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}},
-    {'_' , {-5}}
-    };
-    unordered_map<char, unordered_map<char, int>>table2;
-
-    table2 = {
+    table = {
         {'A', 
             {
                 {'A', 5}, 
@@ -765,7 +736,7 @@ unordered_map<char, unordered_map<char, int>> GenMatrix() {
     };
         
 
-    return table2;
+    return table;
 }
 
 string GenCol(){
@@ -808,44 +779,54 @@ string loadfile(string filepath){
 
 
 
-void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> board){
+void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads){
 
-  int veryBestScore = 0;
+  //cout << "here" << endl;
   int gap = table.at('_').at('_');
 
-  
-  for (int i = 0; i < seq2.length(); i++){
-    for (int j=0; j < seq1.length(); j++){
-      //cout << i << " " << j << endl;
-      int diagonal = board[i][j];
-      int top = board[i][j+1];
-      int left = board[i+1][j];
-      //cout << "here" << endl;
+  int i = id;
+  int j = 0;
+  int rows = board.size();
+  int cols = board[0].size();
+  cout << id << " here " <<  endl;
+  cout << rows << " " << cols << endl;
+  while(i < rows - 1) {
+    while(j < cols - 1) {
+        if (board[i][j+1] != -1 and board[i+1][j] != -1 and board[i][j] != -1) {
 
-      char seq1C = seq1[j];
-      char seq2C = seq2[i];
-      int matchScore = table.at(seq1C).at(seq2C);
-     
-      int diagonalScore = diagonal + matchScore;
-      int topScore = top + gap;
-      int leftScore = left + gap;
+        //cout << i << " " << j << endl;
+        int diagonal = board[i][j];
+        int top = board[i][j+1];
+        int left = board[i+1][j];
+        cout << "here" << endl;
+
+        char seq1C = seq1[j];
+        char seq2C = seq2[i];
+        int matchScore = table.at(seq1C).at(seq2C);
+        
+        int diagonalScore = diagonal + matchScore;
+        int topScore = top + gap;
+        int leftScore = left + gap;
 
 
-      int bestScore = getMax(diagonalScore, topScore, leftScore);
+        int bestScore = getMax(diagonalScore, topScore, leftScore);
 
-      if (bestScore < 0) {
-        board[i+1][j+1] = 0;
-      } else {
-        board[i+1][j+1] = bestScore;
-        if (bestScore > veryBestScore) {
-            veryBestScore = bestScore;
-            bestI = i + 1;
-            bestJ = j + 1;
+        if (bestScore < 0) {
+            m.unlock();
+            board[i+1][j+1] = 0;
+            m.lock();
+        } else {
+            m.unlock();
+            board[i+1][j+1] = bestScore;
+            m.lock();
         }
-      }
+        j += 1;
+        }
     }
+    j = 0;
+    i += numThreads;
   }
-  
+  cout << "here" << endl;
 }
 
 
@@ -917,28 +898,49 @@ int main() {
   for(int i=0; i < boardRows; i++){
     vector<int> tempV;
     for(int j = 0; j < boardColumns; j++){
-      if(i != 0 or j != 0 ){
-        tempV.push_back(-1);
+      if(i == 0 or j == 0){
+        tempV.push_back(0);
       }
       else{
-        tempV.push_back(0);
+        tempV.push_back(-1);
       }
     }
     board.push_back(tempV);
+  }
+  string s = "";
+  for(int i = 0; i < boardRows; i++){
+    for(int j = 0; j < boardColumns; j++){
+        s += to_string(board[i][j]);
+    }
+    cout << s << endl;
+    s = "";
   }
   
   
   auto start = high_resolution_clock::now();
   std::vector<std::thread> threads;
-  for (int i = 0; i < 10; i++) {
-    std::thread t(buildMatrix, seq1, seq2, table, ref(board));
+  mutex m;
+  int numThreads = 10;
+  for (int i = 0; i < numThreads; i++) {
+    int id = i;
+    std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads);
     threads.push_back(std::move(t));
   }
 
   for (auto &t : threads) {
     t.join();
   }
-  
+  int max = 0;
+  for(int i = 0; i < boardRows; i++){
+    for(int j = 0; j < boardColumns; j++){
+        if (board[i][j] > max) {
+            max = board[i][j];
+            bestI = i;
+            bestJ = j;
+        }
+    }
+  }
+  cout << "here" << endl;
   traceBack(board, table);
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<milliseconds>(stop - start);
