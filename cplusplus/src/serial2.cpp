@@ -848,7 +848,7 @@ vector<vector<int>> buildMatrix(string seq1, string seq2, unordered_map<char, un
       } else {
         board[i+1][j+1] = bestScore;
         if (bestScore >= veryBestScore) {
-            cout << i << " " << j << endl;
+            //cout << i << " " << j << endl;
             veryBestScore = bestScore;
             bestI = i + 1;
             bestJ = j + 1;
@@ -918,10 +918,18 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
 
 
 
-int main() {
+int main(int argc, char* argv[]) {
+    
+    if (argc != 3){
+        cout << "ERROR invalid number of files.\nCORRECT USE: ./threaded.cpp <filename.txt> <filename.txt>"<< endl;
+    }
+    string file1 = argv[1];
+    string file2 = argv[2];
+    file2 = "../input/" + file2;
+    file1 = "../input/" + file1;
     auto start = high_resolution_clock::now();
-    seq1 = loadfile("../input/proteinseq1.txt");
-    seq2 = loadfile("../input/proteinseq3.txt");
+    seq1 = loadfile(file1);
+    seq2 = loadfile(file2);
     unordered_map<char, unordered_map<char, int>>table = GenMatrix();
 
     
@@ -932,12 +940,12 @@ int main() {
         for(int j = 0; j < board[0].size(); j++){
             s += to_string(board[i][j]) + " ";
         }
-        cout <<to_string(i)+ " "<< s << endl;
+        //cout <<to_string(i)+ " "<< s << endl;
         s = "";
     }
 
-    cout << bestI << " " << bestJ << endl;
-    cout << board.size() << endl;
+    //cout << bestI << " " << bestJ << endl;
+    //cout << board.size() << endl;
     traceBack(board, table);
     
     
@@ -948,5 +956,10 @@ int main() {
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
     cout << "time taken (milliseconds) for serial2: " << duration.count() << endl;
+    ofstream myfile;
+    myfile.open("../output/serial_results.txt");
+    myfile << "SERIAL RESULTS: " << endl;
+    myfile << finalSeq1 + "\n" + finalSeq2+ "\n" + "Execution time (milliseconds): " + to_string(duration.count());
+    myfile.close();
 
 }

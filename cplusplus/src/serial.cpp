@@ -213,11 +213,17 @@ void traceBack(vector<vector<int>> board, unordered_map<char, vector<int>> table
 
 
 
-int main() {
-  auto start = high_resolution_clock::now();
-  
-  seq1 = loadfile("../input/proteinseq1.txt");
-  seq2 = loadfile("../input/proteinseq3.txt");
+int main(int argc, char* argv[]) {
+  if (argc != 3){
+        cout << "ERROR invalid number of files.\nCORRECT USE: ./threaded.cpp <filename.txt> <filename.txt>"<< endl;
+    }
+    string file1 = argv[1];
+    string file2 = argv[2];
+    file2 = "../input/" + file2;
+    file1 = "../input/" + file1;
+    auto start = high_resolution_clock::now();
+    seq1 = loadfile(file1);
+    seq2 = loadfile(file2);
   unordered_map<char, vector<int>>table = GenMatrix();
   string col = GenCol();
   string s = "";

@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplu
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/randomseq.dir/all
 all: CMakeFiles/serial2.dir/all
 all: CMakeFiles/threaded.dir/all
 all: CMakeFiles/serial.dir/all
@@ -65,11 +66,39 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/randomseq.dir/clean
 clean: CMakeFiles/serial2.dir/clean
 clean: CMakeFiles/threaded.dir/clean
 clean: CMakeFiles/serial.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/randomseq.dir
+
+# All Build rule for target.
+CMakeFiles/randomseq.dir/all:
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/depend
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=1,2 "Built target randomseq"
+.PHONY : CMakeFiles/randomseq.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/randomseq.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/randomseq.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles 0
+.PHONY : CMakeFiles/randomseq.dir/rule
+
+# Convenience name for target.
+randomseq: CMakeFiles/randomseq.dir/rule
+
+.PHONY : randomseq
+
+# clean rule for target.
+CMakeFiles/randomseq.dir/clean:
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/clean
+.PHONY : CMakeFiles/randomseq.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/serial2.dir
@@ -78,7 +107,7 @@ clean: CMakeFiles/serial.dir/clean
 CMakeFiles/serial2.dir/all:
 	$(MAKE) -f CMakeFiles/serial2.dir/build.make CMakeFiles/serial2.dir/depend
 	$(MAKE) -f CMakeFiles/serial2.dir/build.make CMakeFiles/serial2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=3,4 "Built target serial2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=5,6 "Built target serial2"
 .PHONY : CMakeFiles/serial2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -105,7 +134,7 @@ CMakeFiles/serial2.dir/clean:
 CMakeFiles/threaded.dir/all:
 	$(MAKE) -f CMakeFiles/threaded.dir/build.make CMakeFiles/threaded.dir/depend
 	$(MAKE) -f CMakeFiles/threaded.dir/build.make CMakeFiles/threaded.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=5,6 "Built target threaded"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=7,8 "Built target threaded"
 .PHONY : CMakeFiles/threaded.dir/all
 
 # Build rule for subdir invocation for target.
@@ -132,7 +161,7 @@ CMakeFiles/threaded.dir/clean:
 CMakeFiles/serial.dir/all:
 	$(MAKE) -f CMakeFiles/serial.dir/build.make CMakeFiles/serial.dir/depend
 	$(MAKE) -f CMakeFiles/serial.dir/build.make CMakeFiles/serial.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=1,2 "Built target serial"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles --progress-num=3,4 "Built target serial"
 .PHONY : CMakeFiles/serial.dir/all
 
 # Build rule for subdir invocation for target.

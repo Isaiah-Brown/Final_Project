@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -O2 -Wextra -pthread  -rdynamic CMakeFiles/randomseq.dir/src/randomseq.cpp.o  -o randomseq 

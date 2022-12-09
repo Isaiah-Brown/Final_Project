@@ -895,61 +895,70 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
     }
 }
 
-int main() {
-  seq1 = loadfile("../input/proteinseq1.txt");
-  seq2 = loadfile("../input/proteinseq3.txt");
-  unordered_map<char, unordered_map<char, int>>table = GenMatrix();
+int main(int argc, char* argv[]) {
+    if (argc != 3){
+        cout << "ERROR invalid number of files.\nCORRECT USE: ./threaded.cpp <filename.txt> <filename.txt>"<< endl;
+    }
+    string file1 = argv[1];
+    string file2 = argv[2];
+    file2 = "../input/" + file2;
+    file1 = "../input/" + file1;
+    auto start = high_resolution_clock::now();
+    seq1 = loadfile(file1);
+    seq2 = loadfile(file2);
 
-  int boardColumns = seq1.length() +1;
-  int boardRows = seq2.length() +1;
-  
-  vector<vector<int>> board;
-  for(int i=0; i < boardRows; i++){
+    unordered_map<char, unordered_map<char, int>>table = GenMatrix();
+
+    int boardColumns = seq1.length() +1;
+    int boardRows = seq2.length() +1;
+
+    vector<vector<int>> board;
+    for(int i=0; i < boardRows; i++){
     vector<int> tempV;
     for(int j = 0; j < boardColumns; j++){
-      if(i == 0 or j == 0){
+        if(i == 0 or j == 0){
         tempV.push_back(0);
-      }
-      else{
+        }
+        else{
         tempV.push_back(-1);
-      }
+        }
     }
     board.push_back(tempV);
-  }
-  
-  
-  auto start = high_resolution_clock::now();
-  std::vector<std::thread> threads;
-  mutex m;
-  int b_size = board.size()-1;
-  cout << b_size << endl;
-  int numThreads = 4;
-  std::stack<vector<int>> stack;
-  for (int i = 0; i < numThreads; i++) {
+    }
+
+
+
+    std::vector<std::thread> threads;
+    mutex m;
+    int b_size = board.size()-1;
+
+    int numThreads = 10;
+    std::stack<vector<int>> stack;
+    for (int i = 0; i < numThreads; i++) {
     int id = i;
     std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads, ref(stack));
     threads.push_back(std::move(t));
-  }
+    }
 
-  for (auto &t : threads) {
+    for (auto &t : threads) {
     t.join();
-  }
-  string s = "";
-  for(int i = 0; i < boardRows; i++){
+    }
+    string s = "";
+    for(int i = 0; i < boardRows; i++){
     for(int j = 0; j < boardColumns; j++){
         s += to_string(board[i][j]) + " ";
     }
-    cout <<to_string(i)+ " "<<  s << endl;
+    //cout <<to_string(i)+ " "<<  s << endl;
     s = "";
-  }
-  
+    }
 
-  int max = 0;
-  int i = 0;
-  int j = 0;
-  while(!stack.empty()) {
+
+    int max = 0;
+    int i = 0;
+    int j = 0;
+    while(!stack.empty()) {
     vector<int> v = stack.top();
-    cout << v[0] << " " << v[1]<< endl;
+    //cout << v[0] << " " << v[1]<< endl;
     stack.pop();
     int curr = board[v[0]][v[1]];
     if (curr >= max) {
@@ -959,20 +968,28 @@ int main() {
             j = v[1];
         }     
     }
-  }
-  cout << i << " " << j << endl;
-  cout << board.size() << endl;
-  
- 
-  traceBack(board, table, i, j);
-  auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<milliseconds>(stop - start);
-  cout << "time taken (milliseconds): " << duration.count()<< endl;
-  
-  cout << finalSeq1 << endl;
-  cout << finalSeq2 << endl;
-  
-  
+    }
+    //cout << i << " " << j << endl;
+    //cout << board.size() << endl;
 
-  return 0;
+
+    traceBack(board, table, i, j);
+    auto stop = high_resolution_clock::now();
+
+    cout << finalSeq1 << endl;
+    cout << finalSeq2 << endl;
+    
+    auto duration = duration_cast<milliseconds>(stop - start);
+    ofstream myfile;
+    //file_name = "../input/" + to_string(argv[2]);
+    myfile.open("../output/threaded_results.txt");
+    myfile << "THREADED RESULTS: " << endl;
+    myfile << finalSeq1 + "\n" + finalSeq2+ "\n" + "Execution time (milliseconds): " + to_string(duration.count());
+    myfile.close();
+
+    
+
+
+
+    return 0;
 }

@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/src/randomseq.cpp
+random
+-
+iostream
+-
+time.h
+-
+cstdlib
+-
+fstream
+-
+cstring
+-
+

@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named randomseq
+
+# Build rule for target.
+randomseq: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 randomseq
+.PHONY : randomseq
+
+# fast build rule for target.
+randomseq/fast:
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/build
+.PHONY : randomseq/fast
+
+#=============================================================================
 # Target rules for targets named serial2
 
 # Build rule for target.
@@ -148,6 +161,33 @@ serial: cmake_check_build_system
 serial/fast:
 	$(MAKE) -f CMakeFiles/serial.dir/build.make CMakeFiles/serial.dir/build
 .PHONY : serial/fast
+
+src/randomseq.o: src/randomseq.cpp.o
+
+.PHONY : src/randomseq.o
+
+# target to build an object file
+src/randomseq.cpp.o:
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/src/randomseq.cpp.o
+.PHONY : src/randomseq.cpp.o
+
+src/randomseq.i: src/randomseq.cpp.i
+
+.PHONY : src/randomseq.i
+
+# target to preprocess a source file
+src/randomseq.cpp.i:
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/src/randomseq.cpp.i
+.PHONY : src/randomseq.cpp.i
+
+src/randomseq.s: src/randomseq.cpp.s
+
+.PHONY : src/randomseq.s
+
+# target to generate assembly for a file
+src/randomseq.cpp.s:
+	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/src/randomseq.cpp.s
+.PHONY : src/randomseq.cpp.s
 
 src/serial.o: src/serial.cpp.o
 
@@ -238,9 +278,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... randomseq"
 	@echo "... serial2"
 	@echo "... threaded"
 	@echo "... serial"
+	@echo "... src/randomseq.o"
+	@echo "... src/randomseq.i"
+	@echo "... src/randomseq.s"
 	@echo "... src/serial.o"
 	@echo "... src/serial.i"
 	@echo "... src/serial.s"
