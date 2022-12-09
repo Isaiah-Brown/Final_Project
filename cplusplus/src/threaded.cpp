@@ -797,8 +797,7 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
   while(i < rows - 1) {
     while(j < cols - 1) {
         if (board[i][j+1] != -1 and board[i+1][j] != -1 and board[i][j] != -1) {
-
-        
+        //this_thread::sleep_for(chrono::nanoseconds(1));
         int diagonal = board[i][j];
         int top = board[i][j+1];
         int left = board[i+1][j];
@@ -817,14 +816,13 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
         int bestScore = getMax(diagonalScore, topScore, leftScore);
         
         if (bestScore < 0) {
-            m.lock();
+            
             board[i+1][j+1] = 0;
-            m.unlock();
+            
         } else {
-            m.lock();
+            
             board[i+1][j+1] = bestScore;
-            m.unlock();
-            if(bestScore > verybestscore) {
+            if(bestScore >= verybestscore) {
                 verybestscore = bestScore;
                 bestI = i + 1;
                 bestJ = j + 1;
@@ -836,7 +834,9 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
     j = 0;
     i += numThreads;
   }
+  m.lock();
   stack.push({bestI, bestJ});
+  m.unlock();
 }
 
 
@@ -897,7 +897,7 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
 
 int main() {
   seq1 = loadfile("../input/proteinseq1.txt");
-  seq2 = loadfile("../input/proteinseq2.txt");
+  seq2 = loadfile("../input/proteinseq3.txt");
   unordered_map<char, unordered_map<char, int>>table = GenMatrix();
 
   int boardColumns = seq1.length() +1;
@@ -916,19 +916,14 @@ int main() {
     }
     board.push_back(tempV);
   }
-  string s = "";
-  for(int i = 0; i < boardRows; i++){
-    for(int j = 0; j < boardColumns; j++){
-        s += to_string(board[i][j]);
-    }
-    s = "";
-  }
   
   
   auto start = high_resolution_clock::now();
   std::vector<std::thread> threads;
   mutex m;
-  int numThreads = 10;
+  int b_size = board.size()-1;
+  cout << b_size << endl;
+  int numThreads = 4;
   std::stack<vector<int>> stack;
   for (int i = 0; i < numThreads; i++) {
     int id = i;
@@ -939,20 +934,34 @@ int main() {
   for (auto &t : threads) {
     t.join();
   }
+  string s = "";
+  for(int i = 0; i < boardRows; i++){
+    for(int j = 0; j < boardColumns; j++){
+        s += to_string(board[i][j]) + " ";
+    }
+    cout <<to_string(i)+ " "<<  s << endl;
+    s = "";
+  }
+  
 
   int max = 0;
   int i = 0;
   int j = 0;
   while(!stack.empty()) {
     vector<int> v = stack.top();
+    cout << v[0] << " " << v[1]<< endl;
     stack.pop();
     int curr = board[v[0]][v[1]];
-    if (curr > max) {
-        max = curr;
-        i = v[0];
-        j = v[1];
+    if (curr >= max) {
+        if (v[0] > i) {
+            max = curr;
+            i = v[0];
+            j = v[1];
+        }     
     }
   }
+  cout << i << " " << j << endl;
+  cout << board.size() << endl;
   
  
   traceBack(board, table, i, j);

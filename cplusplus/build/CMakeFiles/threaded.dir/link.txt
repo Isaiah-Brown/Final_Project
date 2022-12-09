@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -O2 -Wextra -pthread  -rdynamic CMakeFiles/threaded.dir/src/threaded.cpp.o  -o threaded 
