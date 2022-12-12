@@ -847,7 +847,7 @@ vector<vector<int>> buildMatrix(string seq1, string seq2, unordered_map<char, un
         board[i+1][j+1] = 0;
       } else {
         board[i+1][j+1] = bestScore;
-        if (bestScore >= veryBestScore) {
+        if (bestScore > veryBestScore) {
             //cout << i << " " << j << endl;
             veryBestScore = bestScore;
             bestI = i + 1;

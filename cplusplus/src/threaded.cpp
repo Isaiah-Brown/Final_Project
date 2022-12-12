@@ -822,7 +822,7 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
         } else {
             
             board[i+1][j+1] = bestScore;
-            if(bestScore >= verybestscore) {
+            if(bestScore > verybestscore) {
                 verybestscore = bestScore;
                 bestI = i + 1;
                 bestJ = j + 1;
@@ -961,14 +961,20 @@ int main(int argc, char* argv[]) {
     //cout << v[0] << " " << v[1]<< endl;
     stack.pop();
     int curr = board[v[0]][v[1]];
-    if (curr >= max) {
-        if (v[0] > i) {
+    if (curr > max) {
             max = curr;
             i = v[0];
             j = v[1];
-        }     
+    
+    } else if (curr == max)    {
+            if (i > v[0]) {
+                max = curr;
+                i = v[0];
+                j = v[1];
+            }
+        }
     }
-    }
+    
     //cout << i << " " << j << endl;
     //cout << board.size() << endl;
 
