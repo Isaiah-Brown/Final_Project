@@ -21,3 +21,4 @@ target_include_directories(threaded PRIVATE include)
 target_link_libraries(serial PRIVATE Threads::Threads)
 
 add_executable(randomseq src/randomseq.cpp)
+add_executable(runTests src/runTests.cpp)

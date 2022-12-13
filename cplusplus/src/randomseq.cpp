@@ -23,7 +23,7 @@ int main(int charc, char* argv[]){
     ofstream myfile(destination);
     //file_name = "../input/" + to_string(argv[2]);
     
-    myfile << "random sequence of amino acids" << endl;
+    myfile << "random sequence of "<< aa_length<< "amino acids" << endl;
     myfile << aa_string+"\n";
     myfile.close();
     return 0;

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -O2 -Wextra -pthread  -rdynamic CMakeFiles/runTests.dir/src/runTests.cpp.o  -o runTests 

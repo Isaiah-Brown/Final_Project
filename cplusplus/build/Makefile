@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named runTests
+
+# Build rule for target.
+runTests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 runTests
+.PHONY : runTests
+
+# fast build rule for target.
+runTests/fast:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
+.PHONY : runTests/fast
+
+#=============================================================================
 # Target rules for targets named randomseq
 
 # Build rule for target.
@@ -188,6 +201,33 @@ src/randomseq.s: src/randomseq.cpp.s
 src/randomseq.cpp.s:
 	$(MAKE) -f CMakeFiles/randomseq.dir/build.make CMakeFiles/randomseq.dir/src/randomseq.cpp.s
 .PHONY : src/randomseq.cpp.s
+
+src/runTests.o: src/runTests.cpp.o
+
+.PHONY : src/runTests.o
+
+# target to build an object file
+src/runTests.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/src/runTests.cpp.o
+.PHONY : src/runTests.cpp.o
+
+src/runTests.i: src/runTests.cpp.i
+
+.PHONY : src/runTests.i
+
+# target to preprocess a source file
+src/runTests.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/src/runTests.cpp.i
+.PHONY : src/runTests.cpp.i
+
+src/runTests.s: src/runTests.cpp.s
+
+.PHONY : src/runTests.s
+
+# target to generate assembly for a file
+src/runTests.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/src/runTests.cpp.s
+.PHONY : src/runTests.cpp.s
 
 src/serial.o: src/serial.cpp.o
 
@@ -278,6 +318,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... runTests"
 	@echo "... randomseq"
 	@echo "... serial2"
 	@echo "... threaded"
@@ -285,6 +326,9 @@ help:
 	@echo "... src/randomseq.o"
 	@echo "... src/randomseq.i"
 	@echo "... src/randomseq.s"
+	@echo "... src/runTests.o"
+	@echo "... src/runTests.i"
+	@echo "... src/runTests.s"
 	@echo "... src/serial.o"
 	@echo "... src/serial.i"
 	@echo "... src/serial.s"

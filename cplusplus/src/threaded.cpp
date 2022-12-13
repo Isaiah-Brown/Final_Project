@@ -834,9 +834,9 @@ void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<cha
     j = 0;
     i += numThreads;
   }
-  m.lock();
+  
   stack.push({bestI, bestJ});
-  m.unlock();
+  
 }
 
 
@@ -896,11 +896,12 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 3){
+    if (argc != 4){
         cout << "ERROR invalid number of files.\nCORRECT USE: ./threaded.cpp <filename.txt> <filename.txt>"<< endl;
     }
     string file1 = argv[1];
     string file2 = argv[2];
+    int numThreads = stoi(argv[3]);
     file2 = "../input/" + file2;
     file1 = "../input/" + file1;
     auto start = high_resolution_clock::now();
@@ -930,9 +931,9 @@ int main(int argc, char* argv[]) {
 
     std::vector<std::thread> threads;
     mutex m;
-    int b_size = board.size()-1;
+    
 
-    int numThreads = 10;
+    
     std::stack<vector<int>> stack;
     for (int i = 0; i < numThreads; i++) {
     int id = i;
@@ -982,15 +983,16 @@ int main(int argc, char* argv[]) {
     traceBack(board, table, i, j);
     auto stop = high_resolution_clock::now();
 
-    cout << finalSeq1 << endl;
-    cout << finalSeq2 << endl;
     
     auto duration = duration_cast<milliseconds>(stop - start);
     ofstream myfile;
+    int longestFile =0;
+    if (seq1.length() > seq2.length()) longestFile = seq1.length();
+    else longestFile = seq2.length();
     //file_name = "../input/" + to_string(argv[2]);
-    myfile.open("../output/threaded_results.txt");
+    myfile.open("../output/threaded_results.txt", ios_base::app);
     myfile << "THREADED RESULTS: " << endl;
-    myfile << finalSeq1 + "\n" + finalSeq2+ "\n" + "Execution time (milliseconds): " + to_string(duration.count());
+    myfile <<  "Execution time (milliseconds): " + to_string(duration.count())+"\nSeq length: " << to_string(longestFile)+"\n"+"Threads: "<<numThreads <<endl;
     myfile.close();
 
     

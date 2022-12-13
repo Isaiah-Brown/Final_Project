@@ -948,7 +948,10 @@ int main(int argc, char* argv[]) {
     //cout << board.size() << endl;
     traceBack(board, table);
     
+     int longestFile = 0;
     
+    if (seq1.length() > seq2.length()) longestFile = seq1.length();
+    else longestFile = seq2.length();
     cout << finalSeq1 << endl;
     cout << finalSeq2 << endl;
   
@@ -957,9 +960,9 @@ int main(int argc, char* argv[]) {
     auto duration = duration_cast<milliseconds>(end - start);
     cout << "time taken (milliseconds) for serial2: " << duration.count() << endl;
     ofstream myfile;
-    myfile.open("../output/serial_results.txt");
+    myfile.open("../output/serial_results.txt", ios_base::app);
     myfile << "SERIAL RESULTS: " << endl;
-    myfile << finalSeq1 + "\n" + finalSeq2+ "\n" + "Execution time (milliseconds): " + to_string(duration.count());
+    myfile << finalSeq1 + "\n" + finalSeq2+ "\n" + "Execution time (milliseconds): " + to_string(duration.count())+"\nSequence length: " <<longestFile;
     myfile.close();
 
 }
