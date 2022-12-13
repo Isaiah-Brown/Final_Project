@@ -62,3 +62,39 @@ SERIAL RESULTS:
 Execution time (milliseconds): 5846
 CUPMS: 52
 Sequence length: 9000
+SERIAL RESULTS: 
+Execution time (milliseconds): 0
+CUPMS: 10
+Sequence length: 100
+SERIAL RESULTS: 
+Execution time (milliseconds): 0
+CUPMS: 11
+Sequence length: 100
+SERIAL RESULTS: 
+Execution time (milliseconds): 3
+CUPMS: 11
+Sequence length: 100
+SERIAL RESULTS: 
+Execution time (milliseconds): 3
+CUPMS: 11
+Sequence length: 100
+SERIAL RESULTS: 
+Execution time (milliseconds): 8
+CUPMS: 12
+Sequence length: 303
+SERIAL RESULTS: 
+Execution time (milliseconds): 7
+CUPMS: 13
+Sequence length: 303
+SERIAL RESULTS: 
+Execution time (milliseconds): 5
+CUPMS: 19
+Sequence length: 303
+SERIAL RESULTS: 
+Execution time (milliseconds): 6
+CUPMS: 12
+Sequence length: 303
+SERIAL RESULTS: 
+Execution time (milliseconds): 5
+CUPMS: 19
+Sequence length: 303

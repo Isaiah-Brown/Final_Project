@@ -137,19 +137,6 @@ randomseq/fast:
 .PHONY : randomseq/fast
 
 #=============================================================================
-# Target rules for targets named serial2
-
-# Build rule for target.
-serial2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 serial2
-.PHONY : serial2
-
-# fast build rule for target.
-serial2/fast:
-	$(MAKE) -f CMakeFiles/serial2.dir/build.make CMakeFiles/serial2.dir/build
-.PHONY : serial2/fast
-
-#=============================================================================
 # Target rules for targets named threaded
 
 # Build rule for target.
@@ -256,33 +243,6 @@ src/serial.cpp.s:
 	$(MAKE) -f CMakeFiles/serial.dir/build.make CMakeFiles/serial.dir/src/serial.cpp.s
 .PHONY : src/serial.cpp.s
 
-src/serial2.o: src/serial2.cpp.o
-
-.PHONY : src/serial2.o
-
-# target to build an object file
-src/serial2.cpp.o:
-	$(MAKE) -f CMakeFiles/serial2.dir/build.make CMakeFiles/serial2.dir/src/serial2.cpp.o
-.PHONY : src/serial2.cpp.o
-
-src/serial2.i: src/serial2.cpp.i
-
-.PHONY : src/serial2.i
-
-# target to preprocess a source file
-src/serial2.cpp.i:
-	$(MAKE) -f CMakeFiles/serial2.dir/build.make CMakeFiles/serial2.dir/src/serial2.cpp.i
-.PHONY : src/serial2.cpp.i
-
-src/serial2.s: src/serial2.cpp.s
-
-.PHONY : src/serial2.s
-
-# target to generate assembly for a file
-src/serial2.cpp.s:
-	$(MAKE) -f CMakeFiles/serial2.dir/build.make CMakeFiles/serial2.dir/src/serial2.cpp.s
-.PHONY : src/serial2.cpp.s
-
 src/threaded.o: src/threaded.cpp.o
 
 .PHONY : src/threaded.o
@@ -320,7 +280,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... runTests"
 	@echo "... randomseq"
-	@echo "... serial2"
 	@echo "... threaded"
 	@echo "... serial"
 	@echo "... src/randomseq.o"
@@ -332,9 +291,6 @@ help:
 	@echo "... src/serial.o"
 	@echo "... src/serial.i"
 	@echo "... src/serial.s"
-	@echo "... src/serial2.o"
-	@echo "... src/serial2.i"
-	@echo "... src/serial2.s"
 	@echo "... src/threaded.o"
 	@echo "... src/threaded.i"
 	@echo "... src/threaded.s"

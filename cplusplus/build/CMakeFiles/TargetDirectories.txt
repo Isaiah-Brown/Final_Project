@@ -2,6 +2,5 @@
 /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles/edit_cache.dir
 /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles/runTests.dir
 /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles/randomseq.dir
-/cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles/serial2.dir
 /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles/threaded.dir
 /cps/home/elee2/Desktop/final_parallel/Final_Project/cplusplus/build/CMakeFiles/serial.dir

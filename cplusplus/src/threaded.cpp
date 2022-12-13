@@ -778,7 +778,7 @@ string loadfile(string filepath){
 
 
 
-void buildMatrix(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads, std::stack<vector<int>> &stack){
+void buildBoard(string seq1, string seq2, unordered_map<char, unordered_map<char, int>> table, vector<vector<int>> &board, int id, mutex &m, int numThreads, std::stack<vector<int>> &stack){
 
   //cout << "here" << endl;
   int verybestscore = 0;
@@ -938,7 +938,7 @@ int main(int argc, char* argv[]) {
     auto start1 = high_resolution_clock::now();
     for (int i = 0; i < numThreads; i++) {
     int id = i;
-    std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads, ref(stack));
+    std::thread t(buildBoard, seq1, seq2, table, ref(board), id, ref(m), numThreads, ref(stack));
     threads.push_back(std::move(t));
     }
     auto end1 = high_resolution_clock::now();
@@ -994,10 +994,12 @@ int main(int argc, char* argv[]) {
     int longestFile =0;
     if (seq1.length() > seq2.length()) longestFile = seq1.length();
     else longestFile = seq2.length();
-    //file_name = "../input/" + to_string(argv[2]);
+    cout << finalSeq1 << endl;
+    cout << finalSeq2 << endl;
+
     myfile.open("../output/threaded_results.txt", ios_base::app);
-    myfile << "THREADED RESULTS: " << endl;
-    myfile <<  "Execution time (milliseconds): " + to_string(duration.count())+"\nCUPMS: "<<CUPS<<"\nSeq length: " << to_string(longestFile)+"\n"+"Threads: "<<numThreads <<endl;
+    myfile << "\nTHREADED RESULTS: " << endl;
+    myfile <<  "Sequence 1: "+finalSeq1+"\nSequence 2: "+ finalSeq2+ "\nExecution time (milliseconds): " + to_string(duration.count())+"\nCUPMS: "<<CUPS<<"\nSeq length: " << to_string(longestFile)+"\n"+"Threads: "<<numThreads <<endl;
     myfile.close();
 
     
