@@ -1,137 +1,80 @@
-
 THREADED RESULTS: 
-Execution time (milliseconds): 7358
-Seq length: 10000
-Threads: 1
-THREADED RESULTS: 
-Execution time (milliseconds): 6436
-Seq length: 10000
-Threads: 2
-THREADED RESULTS: 
-Execution time (milliseconds): 5989
-Seq length: 10000
-Threads: 4
-THREADED RESULTS: 
-Execution time (milliseconds): 5816
-Seq length: 10000
-Threads: 6
-THREADED RESULTS: 
-Execution time (milliseconds): 5843
-Seq length: 10000
-Threads: 8
-THREADED RESULTS: 
-Execution time (milliseconds): 5668
-Seq length: 10000
-Threads: 10
-THREADED RESULTS: 
-Execution time (milliseconds): 5638
-Seq length: 10000
+Execution time (milliseconds): 7
+CUPMS: 9
+Seq length: 100
 Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 25551
-Seq length: 10000
-Threads: 14
+Execution time (milliseconds): 8
+CUPMS: 45
+Seq length: 200
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 33053
-Seq length: 10000
-Threads: 16
+Execution time (milliseconds): 15
+CUPMS: 71
+Seq length: 300
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 33162
-Seq length: 10000
-Threads: 18
+Execution time (milliseconds): 21
+CUPMS: 121
+Seq length: 400
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 41194
-Seq length: 10000
-Threads: 20
+Execution time (milliseconds): 31
+CUPMS: 195
+Seq length: 500
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 99
-Seq length: 1000
-Threads: 1
-THREADED RESULTS: 
-Execution time (milliseconds): 92
-Seq length: 1000
-Threads: 2
-THREADED RESULTS: 
-Execution time (milliseconds): 88
-Seq length: 1000
-Threads: 4
-THREADED RESULTS: 
-Execution time (milliseconds): 80
-Seq length: 1000
-Threads: 6
-THREADED RESULTS: 
-Execution time (milliseconds): 78
-Seq length: 1000
-Threads: 8
-THREADED RESULTS: 
-Execution time (milliseconds): 74
-Seq length: 1000
-Threads: 10
-THREADED RESULTS: 
-Execution time (milliseconds): 78
+Execution time (milliseconds): 73
+CUPMS: 1414
 Seq length: 1000
 Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 1888
-Seq length: 1000
-Threads: 14
-THREADED RESULTS: 
-Execution time (milliseconds): 2605
-Seq length: 1000
-Threads: 16
-THREADED RESULTS: 
-Execution time (milliseconds): 3161
-Seq length: 1000
-Threads: 18
-THREADED RESULTS: 
-Execution time (milliseconds): 3970
-Seq length: 1000
-Threads: 20
-THREADED RESULTS: 
-Execution time (milliseconds): 97
-Seq length: 1000
-Threads: 1
-THREADED RESULTS: 
-Execution time (milliseconds): 103
-Seq length: 1000
-Threads: 2
-THREADED RESULTS: 
-Execution time (milliseconds): 92
-Seq length: 1000
-Threads: 4
-THREADED RESULTS: 
-Execution time (milliseconds): 79
-Seq length: 1000
-Threads: 6
-THREADED RESULTS: 
-Execution time (milliseconds): 74
-Seq length: 1000
-Threads: 8
-THREADED RESULTS: 
-Execution time (milliseconds): 78
-Seq length: 1000
-Threads: 10
-THREADED RESULTS: 
-Execution time (milliseconds): 77
-Seq length: 1000
+Execution time (milliseconds): 1416
+CUPMS: 65274
+Seq length: 5000
 Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 1875
-Seq length: 1000
-Threads: 14
+Execution time (milliseconds): 5611
+CUPMS: 238663
+Seq length: 10000
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 2517
-Seq length: 1000
-Threads: 16
+Execution time (milliseconds): 144396
+CUPMS: 4.62107e+06
+Seq length: 50000
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 3535
-Seq length: 1000
-Threads: 18
+Execution time (milliseconds): 247
+CUPMS: 9324
+Seq length: 2000
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 3694
-Seq length: 1000
-Threads: 20
+Execution time (milliseconds): 523
+CUPMS: 23316
+Seq length: 3000
+Threads: 12
 THREADED RESULTS: 
-Execution time (milliseconds): 5115
-Seq length: 1000
-Threads: 22
+Execution time (milliseconds): 916
+CUPMS: 41775
+Seq length: 4000
+Threads: 12
+THREADED RESULTS: 
+Execution time (milliseconds): 2042
+CUPMS: 87167
+Seq length: 6000
+Threads: 12
+THREADED RESULTS: 
+Execution time (milliseconds): 2770
+CUPMS: 121287
+Seq length: 7000
+Threads: 12
+THREADED RESULTS: 
+Execution time (milliseconds): 3604
+CUPMS: 152019
+Seq length: 8000
+Threads: 12
+THREADED RESULTS: 
+Execution time (milliseconds): 4555
+CUPMS: 197560
+Seq length: 9000
+Threads: 12

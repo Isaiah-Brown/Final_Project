@@ -897,7 +897,7 @@ void traceBack(vector<vector<int>> board, unordered_map<char, unordered_map<char
 
 int main(int argc, char* argv[]) {
     if (argc != 4){
-        cout << "ERROR invalid number of files.\nCORRECT USE: ./threaded.cpp <filename.txt> <filename.txt>"<< endl;
+        cout << "ERROR invalid number of files.\nCORRECT USE: ./threaded.cpp <filename.txt> <filename.txt> <# of threads>"<< endl;
     }
     string file1 = argv[1];
     string file2 = argv[2];
@@ -935,20 +935,22 @@ int main(int argc, char* argv[]) {
 
     
     std::stack<vector<int>> stack;
+    auto start1 = high_resolution_clock::now();
     for (int i = 0; i < numThreads; i++) {
     int id = i;
     std::thread t(buildMatrix, seq1, seq2, table, ref(board), id, ref(m), numThreads, ref(stack));
     threads.push_back(std::move(t));
     }
+    auto end1 = high_resolution_clock::now();
 
     for (auto &t : threads) {
     t.join();
     }
     string s = "";
     for(int i = 0; i < boardRows; i++){
-    for(int j = 0; j < boardColumns; j++){
-        s += to_string(board[i][j]) + " ";
-    }
+        for(int j = 0; j < boardColumns; j++){
+            s += to_string(board[i][j]) + " ";
+        }
     //cout <<to_string(i)+ " "<<  s << endl;
     s = "";
     }
@@ -983,8 +985,11 @@ int main(int argc, char* argv[]) {
     traceBack(board, table, i, j);
     auto stop = high_resolution_clock::now();
 
-    
     auto duration = duration_cast<milliseconds>(stop - start);
+    auto cups_time = duration_cast<microseconds>(end1 - start1);
+    unsigned int seconds = cups_time.count();
+    float CUPS = (seq1.length() * seq2.length() + 2) / seconds;
+    
     ofstream myfile;
     int longestFile =0;
     if (seq1.length() > seq2.length()) longestFile = seq1.length();
@@ -992,7 +997,7 @@ int main(int argc, char* argv[]) {
     //file_name = "../input/" + to_string(argv[2]);
     myfile.open("../output/threaded_results.txt", ios_base::app);
     myfile << "THREADED RESULTS: " << endl;
-    myfile <<  "Execution time (milliseconds): " + to_string(duration.count())+"\nSeq length: " << to_string(longestFile)+"\n"+"Threads: "<<numThreads <<endl;
+    myfile <<  "Execution time (milliseconds): " + to_string(duration.count())+"\nCUPMS: "<<CUPS<<"\nSeq length: " << to_string(longestFile)+"\n"+"Threads: "<<numThreads <<endl;
     myfile.close();
 
     

@@ -932,8 +932,12 @@ int main(int argc, char* argv[]) {
     seq2 = loadfile(file2);
     unordered_map<char, unordered_map<char, int>>table = GenMatrix();
 
-    
+    auto start2 = high_resolution_clock::now();
     vector<vector<int>> board = buildMatrix(seq1, seq2, table);
+    auto end2 = high_resolution_clock::now();
+    auto board_time = duration_cast<microseconds>(end2-start2);
+    unsigned int seconds = board_time.count();
+    float CUPS = (seq1.length() * seq2.length())/ seconds;
 
     string s = "";
     for(int i = 0; i < board.size(); i++){
@@ -952,8 +956,8 @@ int main(int argc, char* argv[]) {
     
     if (seq1.length() > seq2.length()) longestFile = seq1.length();
     else longestFile = seq2.length();
-    cout << finalSeq1 << endl;
-    cout << finalSeq2 << endl;
+    //cout << finalSeq1 << endl;
+    //cout << finalSeq2 << endl;
   
     
     auto end = high_resolution_clock::now();
@@ -962,7 +966,7 @@ int main(int argc, char* argv[]) {
     ofstream myfile;
     myfile.open("../output/serial_results.txt", ios_base::app);
     myfile << "SERIAL RESULTS: " << endl;
-    myfile << finalSeq1 + "\n" + finalSeq2+ "\n" + "Execution time (milliseconds): " + to_string(duration.count())+"\nSequence length: " <<longestFile;
+    myfile << "Execution time (milliseconds): " + to_string(duration.count())+"\nCUPMS: "<<CUPS<<"\nSequence length: " <<longestFile <<endl;;
     myfile.close();
 
 }
